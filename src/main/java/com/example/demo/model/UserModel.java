@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class UserModel {
     @Id
-    private int Id;
+    private Integer Id;
     private String name;
 }
