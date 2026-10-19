@@ -24,10 +24,10 @@ public class UserController {
         return userService.getUser(name);
     }
 
-    @PostMapping("/saveuser")
-    public UserDto saveuser(@RequestBody UserDto userDto){
-        return userService.saveUser(userDto);
-    }
+    @PostMapping("/saveusers")
+    public List<UserDto> saveUsers(@RequestBody List<UserDto> userDtos) {
+    return userService.saveUsers(userDtos);
+}
 
     @PutMapping("/updateuser")
     public UserDto updateuser(@RequestBody UserDto userDto){

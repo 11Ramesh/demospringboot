@@ -31,10 +31,18 @@ public class UserService {
         return modelMapper.map(userModelList, new TypeToken<List<UserDto>>(){}.getType());
     }
 
-    public UserDto saveUser(UserDto userDto){
-        userRepo.save(modelMapper.map(userDto, UserModel.class));
-        return userDto;
-    }
+    public List<UserDto> saveUsers(List<UserDto> userDtos) {
+
+    List<UserModel> userModels = userDtos.stream()
+            .map(dto -> modelMapper.map(dto, UserModel.class))
+            .toList();
+
+    List<UserModel> savedUsers = userRepo.saveAll(userModels);
+
+    return savedUsers.stream()
+            .map(user -> modelMapper.map(user, UserDto.class))
+            .toList();
+}
 
     public UserDto updateUser(UserDto userDto){
         userRepo.save(modelMapper.map(userDto, UserModel.class));
